@@ -13,7 +13,7 @@ public class Sieve {
     
     public static void printsieve(int[] results, boolean[] prime) {
 	    System.out.print("> ");
-	    char c = ' ';
+	    char cVal = ' ';
 
 	    // Just loop through the array and print the values.
 	    // Put a (T) after each one if it has been marked
@@ -21,7 +21,7 @@ public class Sieve {
 	    // composite (not prime).
 	    
 	    for (int j = 0; j < results.length;) {
-		c = prime[j] ? 'T' : 'F';
+			c = prime[j] ? 'T' : 'F';
 		System.out.print(results[j] + "(" + c + ") ");
 		j++;
 	    }
@@ -36,28 +36,31 @@ public class Sieve {
     
     public static void printSieve(int[] results) {
 
-	// As long as there are elements in the array,
-	// print it.  Otherwise, print "BLANK".
-	
-	if (results == null || results.length == 0) {
-		System.out.print("BLANK");	    
-	} else {
-		System.out.print("> ");
-	    for (int j = 1; j < results.length; j++){ 
-			System.out.print(results[j] + " ");
-		}
-	}
+		// As long as there are elements in the array,
+		// print it.  Otherwise, print "BLANK".
 
-	System.out.println("");	
+		if (results == null || results.length == 0) {
+			System.out.print("BLANK");	    
+		} else {
+			System.out.print("> ");
+			
+			for (int j = 1; j < results.length; j++) { 
+				System.out.print(results[j] + " ");
+			}
+		}
+
+		System.out.println("");	
     }
 
     /**
-     * @param s the size of the array to return
+	 * Gets an array with all true values.
+     * @param size the size of the array to return
+	 * @return boolean[] an array with all true values
      */
     
-    public static boolean[] getTrueArray(int s) {
-	boolean toReturn[] = new boolean[s];
-	for (int j = 0; j < s; j++) {
+    public static boolean[] getTrueArray(int size) {
+	boolean[] toReturn = new boolean[size];
+	for (int j = 0; j < size; j++) {
 	    toReturn[j] = true;
 	}
 	// Return an all-true array.
@@ -73,7 +76,7 @@ public class Sieve {
      * @return int[] the prime numbers from 1 to n 
      */
     
-    public static int[] convertResults(int[] results, boolean prime[] ) {
+    public static int[] convertResults(int[] results, boolean[] prime) {
 
 	// Create an ArrayList.	 If a value is true for primality,
 	// add it to the array list.
@@ -186,10 +189,9 @@ public class Sieve {
 	if (args.length > 0) {
 	    toReturn = (int) Integer.parseInt(args[0]);
 	    if (toReturn < 1) {
-		// User did not enter a valid integer
-		throw new IllegalArgumentException();
-	    } else {
-	}
+			// User did not enter a valid integer
+			throw new IllegalArgumentException();
+	    }
 	} else {
 	    // User forgot to enter an argument!  
 	    throw new IllegalArgumentException();
@@ -221,7 +223,7 @@ public class Sieve {
 	
 	try {
 	    _max = calculateMax(args);
-	} catch (Exception ex) {
+	} catch (IllegalArgumentException ex) {
 	    System.out.println("You forgot to enter a valid integer (> 0)!");
 	    System.out.println("Assuming you meant to type 100...");
 	    _max = 100;
